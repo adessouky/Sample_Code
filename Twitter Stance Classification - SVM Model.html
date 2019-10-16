@@ -13115,7 +13115,7 @@ div#notebook {
 
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -13141,7 +13141,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">twitter_train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -13157,7 +13157,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[12]:</div>
+    <div class="prompt output_prompt">Out[2]:</div>
 
 
 
@@ -13241,7 +13241,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">twitter_test</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -13257,7 +13257,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[13]:</div>
+    <div class="prompt output_prompt">Out[3]:</div>
 
 
 
@@ -13348,7 +13348,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">svm_stance</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="n">topic_list</span><span class="p">):</span>
@@ -13368,16 +13368,19 @@ div#notebook {
     <span class="n">tweets_test</span> <span class="o">=</span> <span class="n">twitter_test</span><span class="p">[</span><span class="n">matches_test</span><span class="p">][</span><span class="s1">&#39;Tweet&#39;</span><span class="p">]</span>
 
     <span class="c1">#carve out training labels and convert to labels for feeding sklearn SVM</span>
-    <span class="n">stance_labels_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">twitter_train</span><span class="p">[</span><span class="n">matches_train</span><span class="p">][</span><span class="s1">&#39;Stance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">2</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s2">&quot;FAVOR&quot;</span> <span class="k">else</span> 
-                                 <span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s2">&quot;NONE&quot;</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)))</span>
+    <span class="n">stance_labels_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">twitter_train</span><span class="p">[</span><span class="n">matches_train</span><span class="p">][</span><span class="s1">&#39;Stance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> 
+                                                                                <span class="mi">2</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s2">&quot;FAVOR&quot;</span> <span class="k">else</span> 
+                                                                                <span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s2">&quot;NONE&quot;</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)))</span>
 
-    <span class="n">stance_labels_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">twitter_test</span><span class="p">[</span><span class="n">matches_test</span><span class="p">][</span><span class="s1">&#39;Stance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">2</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s2">&quot;FAVOR&quot;</span> <span class="k">else</span> 
-                                 <span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s2">&quot;NONE&quot;</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)))</span>
+    <span class="n">stance_labels_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">twitter_test</span><span class="p">[</span><span class="n">matches_test</span><span class="p">][</span><span class="s1">&#39;Stance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> 
+                                                                             <span class="mi">2</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s2">&quot;FAVOR&quot;</span> <span class="k">else</span> 
+                                                                             <span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s2">&quot;NONE&quot;</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)))</span>
 
-    <span class="c1">#tokenize tweets so we can determine our own n-grams (by default, CountVectorizer removes things like # in hashtags)</span>
+    <span class="c1">#tokenize tweets so we can determine our own n-grams </span>
+    <span class="c1">#by default, CountVectorizer removes things like # in hashtags</span>
     <span class="n">tokens</span> <span class="o">=</span> <span class="n">tweets_train</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
 
-    <span class="c1">#loop to generate uni, bi, and trigrams and store in list</span>
+    <span class="c1">#initialize list to store uni, bi, and trigrams</span>
     <span class="n">word_ngrams</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="c1">#nested for loops to create the universe of word ngrams (uni - tri)</span>
@@ -13403,7 +13406,7 @@ div#notebook {
     <span class="c1">#convert test data to sparse matrix for relevant n-gram chars</span>
     <span class="n">test_nchars</span> <span class="o">=</span> <span class="n">char_grams</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">tweets_test</span><span class="p">)</span>
     
-    <span class="c1">#stack the word and char n-grams</span>
+    <span class="c1">#stack the word and char n-grams features</span>
     <span class="n">train_grams</span> <span class="o">=</span> <span class="n">hstack</span><span class="p">((</span><span class="n">train_nwords</span><span class="p">,</span> <span class="n">train_nchars</span><span class="p">))</span>
     <span class="n">test_grams</span> <span class="o">=</span> <span class="n">hstack</span><span class="p">((</span><span class="n">test_nwords</span><span class="p">,</span> <span class="n">test_nchars</span><span class="p">))</span>
     
@@ -13440,7 +13443,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Atheism</span>
@@ -13462,8 +13465,8 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Training time: 0.6791191101074219
-Prediction time: 0.19455504417419434
+<pre>Training time: 0.716264009475708
+Prediction time: 0.16527509689331055
 F1 score for atheism: 0.5740909302433803
 </pre>
 </div>
@@ -13475,7 +13478,7 @@ F1 score for atheism: 0.5740909302433803
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Hillary</span>
@@ -13497,8 +13500,8 @@ F1 score for atheism: 0.5740909302433803
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Training time: 1.0503568649291992
-Prediction time: 0.3094470500946045
+<pre>Training time: 1.0145909786224365
+Prediction time: 0.3321692943572998
 F1 score for Hillary 0.615778576876975
 </pre>
 </div>
@@ -13510,7 +13513,7 @@ F1 score for Hillary 0.615778576876975
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Abortion</span>
@@ -13532,8 +13535,8 @@ F1 score for Hillary 0.615778576876975
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Training time: 0.9550590515136719
-Prediction time: 0.2717440128326416
+<pre>Training time: 1.0024938583374023
+Prediction time: 0.2629671096801758
 F1 score for Abortion 0.5760856427523094
 </pre>
 </div>
@@ -13545,7 +13548,7 @@ F1 score for Abortion 0.5760856427523094
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Climate</span>
@@ -13567,9 +13570,21 @@ F1 score for Abortion 0.5760856427523094
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Training time: 0.35231518745422363
-Prediction time: 0.10973620414733887
+<pre>Training time: 0.3415076732635498
+Prediction time: 0.09571194648742676
 F1 score for climate change 0.4541782471743561
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/Users/alexdessouky/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1143: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no predicted samples.
+  &#39;precision&#39;, &#39;predicted&#39;, average, warn_for)
 </pre>
 </div>
 </div>
@@ -13580,7 +13595,7 @@ F1 score for climate change 0.4541782471743561
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Feminism</span>
@@ -13602,8 +13617,8 @@ F1 score for climate change 0.4541782471743561
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Training time: 1.0462157726287842
-Prediction time: 0.31269097328186035
+<pre>Training time: 1.0414958000183105
+Prediction time: 0.5711698532104492
 F1 score for feminist mov 0.5573970225357977
 </pre>
 </div>
@@ -13622,7 +13637,7 @@ F1 score for feminist mov 0.5573970225357977
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#All</span>
@@ -13646,8 +13661,8 @@ F1 score for feminist mov 0.5573970225357977
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Training time: 18.686641931533813
-Prediction time: 5.415696859359741
+<pre>Training time: 18.324557065963745
+Prediction time: 5.0669708251953125
 F1 score for all topics 0.586193069741719
 </pre>
 </div>
