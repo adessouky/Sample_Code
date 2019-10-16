@@ -13113,9 +13113,16 @@ div#notebook {
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Setup">Setup<a class="anchor-link" href="#Setup">&#182;</a></h2>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -13141,7 +13148,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">twitter_train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -13157,7 +13164,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[2]:</div>
+    <div class="prompt output_prompt">Out[3]:</div>
 
 
 
@@ -13241,7 +13248,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">twitter_test</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -13257,7 +13264,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[3]:</div>
+    <div class="prompt output_prompt">Out[4]:</div>
 
 
 
@@ -13339,16 +13346,34 @@ div#notebook {
 </div>
 
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">preprocess_tweets</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create preprocessor to retain @, !, #, ? chars when leveraging CountVectorizer to create word n-grams;</span>
+<span class="sd">    These characters are likely important in capturing stance given the nature of a tweet&quot;&quot;&quot;</span>
+    
+    <span class="n">tokens</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;@&quot;</span><span class="p">,</span><span class="s2">&quot;ATSIGN&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;!&quot;</span><span class="p">,</span><span class="s2">&quot;XPT&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">,</span><span class="s2">&quot;HASHTAG&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">,</span><span class="s2">&quot;QUESTM&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">tokens</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Function-for-SVM-Model">Function for SVM Model<a class="anchor-link" href="#Function-for-SVM-Model">&#182;</a></h2>
+<h2 id="Define-function-for-SVM-model">Define function for SVM model<a class="anchor-link" href="#Define-function-for-SVM-model">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">svm_stance</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="n">topic_list</span><span class="p">):</span>
@@ -13359,15 +13384,15 @@ div#notebook {
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">topic_list</span><span class="p">)):</span>
         <span class="n">topic_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">topic_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
     
-    <span class="c1">#find boolean series of all training &amp; target rows pertaining to the relevant topics</span>
+    <span class="c1">#find boolean series of all rows pertaining to the relevant topics</span>
     <span class="n">matches_train</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;Target&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">topic_list</span><span class="p">)</span>
     <span class="n">matches_test</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;Target&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">topic_list</span><span class="p">)</span>
     
-    <span class="c1">#carve out the training tweets</span>
+    <span class="c1">#carve out tweets</span>
     <span class="n">tweets_train</span> <span class="o">=</span> <span class="n">twitter_train</span><span class="p">[</span><span class="n">matches_train</span><span class="p">][</span><span class="s1">&#39;Tweet&#39;</span><span class="p">]</span>
     <span class="n">tweets_test</span> <span class="o">=</span> <span class="n">twitter_test</span><span class="p">[</span><span class="n">matches_test</span><span class="p">][</span><span class="s1">&#39;Tweet&#39;</span><span class="p">]</span>
 
-    <span class="c1">#carve out training labels and convert to labels for feeding sklearn SVM</span>
+    <span class="c1">#convert stance to labels for feeding sklearn SVM</span>
     <span class="n">stance_labels_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">twitter_train</span><span class="p">[</span><span class="n">matches_train</span><span class="p">][</span><span class="s1">&#39;Stance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> 
                                                                                 <span class="mi">2</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s2">&quot;FAVOR&quot;</span> <span class="k">else</span> 
                                                                                 <span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s2">&quot;NONE&quot;</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)))</span>
@@ -13376,37 +13401,26 @@ div#notebook {
                                                                              <span class="mi">2</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s2">&quot;FAVOR&quot;</span> <span class="k">else</span> 
                                                                              <span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s2">&quot;NONE&quot;</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)))</span>
 
-    <span class="c1">#tokenize tweets so we can determine our own n-grams </span>
-    <span class="c1">#by default, CountVectorizer removes things like # in hashtags</span>
-    <span class="n">tokens</span> <span class="o">=</span> <span class="n">tweets_train</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
-
-    <span class="c1">#initialize list to store uni, bi, and trigrams</span>
-    <span class="n">word_ngrams</span> <span class="o">=</span> <span class="p">[]</span>
-
-    <span class="c1">#nested for loops to create the universe of word ngrams (uni - tri)</span>
-    <span class="k">for</span> <span class="n">tweet</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">gram</span> <span class="ow">in</span> <span class="n">ngrams</span><span class="p">(</span><span class="n">tweet</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
-                <span class="n">word_ngrams</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">gram</span><span class="p">)</span>
-
-    <span class="c1">#turn into unique list</span>
-    <span class="n">word_ngrams</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">word_ngrams</span><span class="p">))</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-
-    <span class="c1">#convert training data to sparse matrix for relevant n-gram words</span>
-    <span class="n">word_grams</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">ngram_range</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">vocabulary</span> <span class="o">=</span> <span class="n">word_ngrams</span><span class="p">)</span>
+    
+    <span class="c1">#pass tweets through pre-processor before feeding to CountVectorizer for word n-gram features</span>
+    <span class="n">preprocess_train</span> <span class="o">=</span> <span class="n">tweets_train</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">preprocess_tweets</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="n">preprocess_test</span> <span class="o">=</span> <span class="n">tweets_test</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">preprocess_tweets</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    
+    <span class="c1">#convert training data to sparse matrix for ngram words</span>
+    <span class="n">word_grams</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">ngram_range</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
     <span class="n">train_nwords</span> <span class="o">=</span> <span class="n">word_grams</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">tweets_train</span><span class="p">)</span>
-
-    <span class="c1">#convert test data to sparse matrix for relevant n-gram words</span>
+    
+    <span class="c1">#convert test data to sparse matrix for ngram words</span>
     <span class="n">test_nwords</span> <span class="o">=</span> <span class="n">word_grams</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">tweets_test</span><span class="p">)</span>
     
-    <span class="c1">#convert training data to sparse matrix for relevant n-gram chars</span>
+    <span class="c1">#convert training data to sparse matrix for ngram chars</span>
     <span class="n">char_grams</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">ngram_range</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">analyzer</span> <span class="o">=</span> <span class="s1">&#39;char&#39;</span><span class="p">)</span>
     <span class="n">train_nchars</span> <span class="o">=</span> <span class="n">char_grams</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">tweets_train</span><span class="p">)</span>
     
-    <span class="c1">#convert test data to sparse matrix for relevant n-gram chars</span>
+    <span class="c1">#convert test data to sparse matrix for n-gram chars</span>
     <span class="n">test_nchars</span> <span class="o">=</span> <span class="n">char_grams</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">tweets_test</span><span class="p">)</span>
     
-    <span class="c1">#stack the word and char n-grams features</span>
+    <span class="c1">#stack the word and char n-grams</span>
     <span class="n">train_grams</span> <span class="o">=</span> <span class="n">hstack</span><span class="p">((</span><span class="n">train_nwords</span><span class="p">,</span> <span class="n">train_nchars</span><span class="p">))</span>
     <span class="n">test_grams</span> <span class="o">=</span> <span class="n">hstack</span><span class="p">((</span><span class="n">test_nwords</span><span class="p">,</span> <span class="n">test_nchars</span><span class="p">))</span>
     
@@ -13437,13 +13451,13 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Model-performance-on-each-Twitter-topic">Model performance on each Twitter topic<a class="anchor-link" href="#Model-performance-on-each-Twitter-topic">&#182;</a></h2>
+<h2 id="Evaluate-SVM-model-performance-when-trained-independently-on-each-topic">Evaluate SVM model performance when trained independently on each topic<a class="anchor-link" href="#Evaluate-SVM-model-performance-when-trained-independently-on-each-topic">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Atheism</span>
@@ -13465,9 +13479,9 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Training time: 0.716264009475708
-Prediction time: 0.16527509689331055
-F1 score for atheism: 0.5740909302433803
+<pre>Training time: 0.7386891841888428
+Prediction time: 0.18186497688293457
+F1 score for atheism: 0.5642660702952643
 </pre>
 </div>
 </div>
@@ -13478,7 +13492,7 @@ F1 score for atheism: 0.5740909302433803
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Hillary</span>
@@ -13500,9 +13514,9 @@ F1 score for atheism: 0.5740909302433803
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Training time: 1.0145909786224365
-Prediction time: 0.3321692943572998
-F1 score for Hillary 0.615778576876975
+<pre>Training time: 1.1526501178741455
+Prediction time: 0.3389089107513428
+F1 score for Hillary 0.6215339439641195
 </pre>
 </div>
 </div>
@@ -13513,7 +13527,7 @@ F1 score for Hillary 0.615778576876975
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Abortion</span>
@@ -13535,9 +13549,9 @@ F1 score for Hillary 0.615778576876975
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Training time: 1.0024938583374023
-Prediction time: 0.2629671096801758
-F1 score for Abortion 0.5760856427523094
+<pre>Training time: 1.040661334991455
+Prediction time: 0.2989931106567383
+F1 score for Abortion 0.574521535156262
 </pre>
 </div>
 </div>
@@ -13548,7 +13562,7 @@ F1 score for Abortion 0.5760856427523094
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Climate</span>
@@ -13570,9 +13584,9 @@ F1 score for Abortion 0.5760856427523094
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Training time: 0.3415076732635498
-Prediction time: 0.09571194648742676
-F1 score for climate change 0.4541782471743561
+<pre>Training time: 0.39953184127807617
+Prediction time: 0.11404800415039062
+F1 score for climate change 0.43827024647887325
 </pre>
 </div>
 </div>
@@ -13595,7 +13609,7 @@ F1 score for climate change 0.4541782471743561
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Feminism</span>
@@ -13617,9 +13631,9 @@ F1 score for climate change 0.4541782471743561
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Training time: 1.0414958000183105
-Prediction time: 0.5711698532104492
-F1 score for feminist mov 0.5573970225357977
+<pre>Training time: 1.1687757968902588
+Prediction time: 0.3199450969696045
+F1 score for feminist mov 0.5651593551268759
 </pre>
 </div>
 </div>
@@ -13631,13 +13645,13 @@ F1 score for feminist mov 0.5573970225357977
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Model-performance-when-trained-on-all-topics-at-once">Model performance when trained on all topics at once<a class="anchor-link" href="#Model-performance-when-trained-on-all-topics-at-once">&#182;</a></h2>
+<h2 id="Evaluate-SVM-model-performance-when-trained-across-all-topics">Evaluate SVM model performance when trained across all topics<a class="anchor-link" href="#Evaluate-SVM-model-performance-when-trained-across-all-topics">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#All</span>
@@ -13661,9 +13675,9 @@ F1 score for feminist mov 0.5573970225357977
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Training time: 18.324557065963745
-Prediction time: 5.0669708251953125
-F1 score for all topics 0.586193069741719
+<pre>Training time: 20.345123052597046
+Prediction time: 5.885331153869629
+F1 score for all topics 0.5913773171042626
 </pre>
 </div>
 </div>
