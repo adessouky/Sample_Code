@@ -13122,7 +13122,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -13148,7 +13148,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">twitter_train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -13164,7 +13164,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[3]:</div>
+    <div class="prompt output_prompt">Out[6]:</div>
 
 
 
@@ -13248,7 +13248,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">twitter_test</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -13264,7 +13264,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[4]:</div>
+    <div class="prompt output_prompt">Out[7]:</div>
 
 
 
@@ -13348,7 +13348,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">preprocess_tweets</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
@@ -13373,7 +13373,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">svm_stance</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="n">topic_list</span><span class="p">):</span>
@@ -13408,10 +13408,10 @@ div#notebook {
     
     <span class="c1">#convert training data to sparse matrix for ngram words</span>
     <span class="n">word_grams</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">ngram_range</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
-    <span class="n">train_nwords</span> <span class="o">=</span> <span class="n">word_grams</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">tweets_train</span><span class="p">)</span>
+    <span class="n">train_nwords</span> <span class="o">=</span> <span class="n">word_grams</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">preprocess_train</span><span class="p">)</span>
     
     <span class="c1">#convert test data to sparse matrix for ngram words</span>
-    <span class="n">test_nwords</span> <span class="o">=</span> <span class="n">word_grams</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">tweets_test</span><span class="p">)</span>
+    <span class="n">test_nwords</span> <span class="o">=</span> <span class="n">word_grams</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">preprocess_test</span><span class="p">)</span>
     
     <span class="c1">#convert training data to sparse matrix for ngram chars</span>
     <span class="n">char_grams</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">ngram_range</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">analyzer</span> <span class="o">=</span> <span class="s1">&#39;char&#39;</span><span class="p">)</span>
@@ -13457,7 +13457,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Atheism</span>
@@ -13479,9 +13479,9 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Training time: 0.7386891841888428
-Prediction time: 0.18186497688293457
-F1 score for atheism: 0.5642660702952643
+<pre>Training time: 0.6755216121673584
+Prediction time: 0.17318105697631836
+F1 score for atheism: 0.5680704546253422
 </pre>
 </div>
 </div>
@@ -13492,7 +13492,7 @@ F1 score for atheism: 0.5642660702952643
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Hillary</span>
@@ -13514,9 +13514,9 @@ F1 score for atheism: 0.5642660702952643
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Training time: 1.1526501178741455
-Prediction time: 0.3389089107513428
-F1 score for Hillary 0.6215339439641195
+<pre>Training time: 1.2129530906677246
+Prediction time: 0.33635997772216797
+F1 score for Hillary 0.6178715314400302
 </pre>
 </div>
 </div>
@@ -13527,7 +13527,7 @@ F1 score for Hillary 0.6215339439641195
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Abortion</span>
@@ -13549,8 +13549,8 @@ F1 score for Hillary 0.6215339439641195
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Training time: 1.040661334991455
-Prediction time: 0.2989931106567383
+<pre>Training time: 1.0690290927886963
+Prediction time: 0.30693817138671875
 F1 score for Abortion 0.574521535156262
 </pre>
 </div>
@@ -13562,7 +13562,7 @@ F1 score for Abortion 0.574521535156262
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Climate</span>
@@ -13584,8 +13584,8 @@ F1 score for Abortion 0.574521535156262
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Training time: 0.39953184127807617
-Prediction time: 0.11404800415039062
+<pre>Training time: 0.39760398864746094
+Prediction time: 0.10849308967590332
 F1 score for climate change 0.43827024647887325
 </pre>
 </div>
@@ -13609,7 +13609,7 @@ F1 score for climate change 0.43827024647887325
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Feminism</span>
@@ -13631,9 +13631,9 @@ F1 score for climate change 0.43827024647887325
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Training time: 1.1687757968902588
-Prediction time: 0.3199450969696045
-F1 score for feminist mov 0.5651593551268759
+<pre>Training time: 1.1262483596801758
+Prediction time: 0.31914305686950684
+F1 score for feminist mov 0.5631143653518248
 </pre>
 </div>
 </div>
@@ -13651,7 +13651,7 @@ F1 score for feminist mov 0.5651593551268759
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#All</span>
@@ -13675,9 +13675,9 @@ F1 score for feminist mov 0.5651593551268759
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Training time: 20.345123052597046
-Prediction time: 5.885331153869629
-F1 score for all topics 0.5913773171042626
+<pre>Training time: 20.777310848236084
+Prediction time: 5.840214014053345
+F1 score for all topics 0.5899294215986095
 </pre>
 </div>
 </div>
